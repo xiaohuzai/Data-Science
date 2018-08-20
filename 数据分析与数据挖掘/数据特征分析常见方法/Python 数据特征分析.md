@@ -31,7 +31,7 @@ plt.scatter(data['经度'],data['纬度'],  # 按照经纬度显示
 plt.grid()  #做出网格
 ```
 
-![](E:\Python\数据分析与数据挖掘\统计分析方法\pictures\1.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/1.png)
 
 #### 2、作极差
 
@@ -67,7 +67,7 @@ data[key2].hist(bins=10)
 # 这里以10组为参考
 ```
 
-![](E:\Python\数据分析与数据挖掘\统计分析方法\pictures\2.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/2.png)
 
 **求分组区间**
 
@@ -154,7 +154,7 @@ for i,j,k in zip(range(x),y,y):
 # 添加频率标签
 ```
 
-![](E:\Python\数据分析与数据挖掘\统计分析方法\pictures\3.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/3.png)
 
 绘制频率分布饼图
 
@@ -167,7 +167,7 @@ plt.axis('equal')    #保证饼状图是正圆
 # 绘制饼图
 ```
 
-![](E:\Python\数据分析与数据挖掘\统计分析方法\pictures\4.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/4.png)
 
 ## 二、对比分析
 
