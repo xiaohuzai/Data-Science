@@ -2,7 +2,7 @@
 
 ## 一、分布分析
 
-以“深圳罗湖二手房信息.csv”数据为例。
+以[“深圳罗湖二手房信息.csv”](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/%E6%B7%B1%E5%9C%B3%E7%BD%97%E6%B9%96%E4%BA%8C%E6%89%8B%E6%88%BF%E4%BF%A1%E6%81%AF.csv)数据为例。
 
 ```python
 import numpy as np
@@ -450,5 +450,284 @@ b_r
 Out[34]: 934.5913418265015
 ```
 
-分位差
+**分位差**
+
+```python
+sta = data['A_sale'].describe()
+stb = data['B_sale'].describe()
+sta
+Out[5]: 
+count     30.000000
+mean     453.540532
+std      301.106231
+min       30.336682
+25%      153.425942
+50%      430.084982
+75%      661.686559
+max      988.801042
+Name: A_sale, dtype: float64
+        
+a_iqr = sta.loc['75%'] - sta.loc['25%']
+b_iqr = stb.loc['75%'] - stb.loc['25%']
+print('A销售额的分位差为：%.2f, B销售额的分位差为：%.2f' % (a_iqr,b_iqr))
+
+A销售额的分位差为：508.26, B销售额的分位差为：566.26
+```
+
+作图
+
+```python
+color = dict(boxes='DarkGreen', whiskers='DarkOrange', medians='DarkBlue', caps='Gray')
+data.plot.box(vert=False,grid = True,color = color,figsize = (10,3))
+#箱型图
+```
+
+![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\12.png)
+
+**方差、标准差**
+
+```python
+a_std = sta.loc['std']
+b_std = stb.loc['std']
+a_var = data['A_sale'].var()
+b_var = data['B_sale'].var()
+print('A销售额的标准差为：%.2f, B销售额的标准差为：%.2f' % (a_std,b_std))
+print('A销售额的方差为：%.2f, B销售额的方差为：%.2f' % (a_var,b_var))
+# 方差 → 各组中数值与算数平均数离差平方的算术平均数
+# 标准差 → 方差的平方根
+# 标准差是最常用的离中趋势指标 → 标准差越大，离中趋势越明显
+
+
+A销售额的标准差为：301.11, B销售额的标准差为：288.34
+A销售额的方差为：90664.96, B销售额的方差为：83138.43
+```
+
+作图
+
+```python
+fig = plt.figure(figsize = (12,4))
+ax1 = fig.add_subplot(1,2,1)
+data['A_sale'].plot(kind = 'kde',style = 'k--',grid = True,title = 'A密度曲线')
+plt.axvline(sta.loc['50%'],hold=None,color='r',linestyle="--",alpha=0.8)  
+plt.axvline(sta.loc['50%'] - a_std,hold=None,color='b',linestyle="--",alpha=0.8)  
+plt.axvline(sta.loc['50%'] + a_std,hold=None,color='b',linestyle="--",alpha=0.8)  
+# A密度曲线，1个标准差
+
+ax2 = fig.add_subplot(1,2,2)
+data['B_sale'].plot(kind = 'kde',style = 'k--',grid = True,title = 'B密度曲线')
+plt.axvline(stb.loc['50%'],hold=None,color='r',linestyle="--",alpha=0.8)  
+plt.axvline(stb.loc['50%'] - b_std,hold=None,color='b',linestyle="--",alpha=0.8)  
+plt.axvline(stb.loc['50%'] + b_std,hold=None,color='b',linestyle="--",alpha=0.8)  
+# B密度曲线，1个标准差
+```
+
+![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\13.png)
+
+## 四、帕累托统计
+
+帕累托分析（贡献度分析） → 帕累托法则：20/80定律
+
+“原因和结果、投入和产出、努力和报酬之间本来存在着无法解释的不平衡。一般来说，投入和努力可以分为两种不同的类型：
+多数，它们只能造成少许的影响；少数，它们造成主要的、重大的影响。”
+→ 一个公司，80%利润来自于20%的畅销产品，而其他80%的产品只产生了20%的利润
+
+例如：
+
+* 世界上大约80％的资源是由世界上15％的人口所耗尽的
+* 世界财富的80％为25％的人所拥有；在一个国家的医疗体系中
+* 20％的人口与20％的疾病，会消耗80％的医疗资源。
+
+一个思路：**通过二八原则，去寻找关键的那20%决定性因素！**
+
+```python
+data = pd.Series(np.random.randn(10)*1200+3000,
+                index = list('ABCDEFGHIJ'))
+data.head()
+                
+Out[13]: 
+A    4928.170915
+B     826.114777
+C    4067.532271
+D    3898.935614
+E    2292.516694
+dtype: float64
+    
+data.sort_values(ascending=False, inplace= True)
+# 由大到小排列
+```
+
+计算出销量占比80%的商品
+
+```python
+p = data.cumsum()/data.sum()  # 创建累计占比，Series
+key = p[p>0.8].index[0]  
+key_num = data.index.tolist().index(key) 
+print('超过80%累计占比的节点值索引为：' ,key)
+print('超过80%累计占比的节点值索引位置为：' ,key_num)
+print('------')
+# 找到累计占比超过80%时候的index
+# 找到key所对应的索引位置
+key_product = data.loc[:key]
+print('核心产品为：')
+print(key_product)
+# 输出决定性因素产品
+
+
+超过80%累计占比的节点值索引为： F
+超过80%累计占比的节点值索引位置为： 6
+------
+核心产品为：
+A    4928.170915
+C    4067.532271
+H    3950.093905
+D    3898.935614
+G    3866.490789
+J    3674.404100
+F    3588.606671
+dtype: float64
+```
+
+作图
+
+```python
+plt.figure(figsize = (10,4))
+data.plot(kind = 'bar', color = 'g', alpha = 0.5, width = 0.7)  
+plt.ylabel('营收_元')
+# 创建营收柱状图
+p.plot(style = '--ko', secondary_y=True)  # secondary_y → y副坐标轴
+plt.axvline(key_num,hold=None,color='r',linestyle="--",alpha=0.8)  
+plt.text(key_num+0.2,p[key],'累计占比为：%.3f%%' % (p[key]*100), color = 'r')  # 累计占比超过80%的节点
+plt.ylabel('营收_比例')
+# 绘制营收累计占比曲线
+```
+
+![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\14.png)
+
+## 五、正太性检验
+
+#### 一、直方图初判
+
+```python
+s = pd.DataFrame(np.random.randn(1000)+10,columns = ['value'])
+
+s.head()
+Out[19]: 
+       value
+0   9.265372
+1   9.420474
+2   8.753998
+3   9.450055
+4  10.044531
+```
+
+作散点数据分布图和直方分布图
+
+```python
+fig = plt.figure(figsize = (10,6))
+ax1 = fig.add_subplot(2,1,1)  # 创建子图1
+ax1.scatter(s.index, s.values)
+plt.grid()
+# 绘制数据分布图
+
+ax2 = fig.add_subplot(2,1,2)  # 创建子图2
+s.hist(bins=30,alpha = 0.5,ax = ax2)
+s.plot(kind = 'kde', secondary_y=True,ax = ax2)
+plt.grid()
+# 绘制直方图
+# 呈现较明显的正太性
+```
+
+![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\15.png)
+
+#### 二、KS检验
+
+```python
+u = s['value'].mean()  # 计算均值
+std = s['value'].std()  # 计算标准差
+stats.kstest(s['value'], 'norm', (u, std))
+# .kstest方法：KS检验，参数分别是：待检验的数据，检验方法（这里设置成norm正态分布），均值与标准差
+# 结果返回两个值：statistic → D值，pvalue → P值
+# p值大于0.05，为正态分布
+
+
+Out[31]: KstestResult(statistic=0.029806473197866334, pvalue=0.33169661573604414)
+```
+
+## 六、相关性分析
+
+#### 一、变量之间的线性关系
+
+```python
+data1 = pd.Series(np.random.rand(50)*100).sort_values()
+data2 = pd.Series(np.random.rand(50)*50).sort_values()
+data3 = pd.Series(np.random.rand(50)*500).sort_values(ascending = False)
+# 创建三个数据：data1为0-100的随机数并从小到大排列，data2为0-50的随机数并从小到大排列，data3为0-500的随机数并从大到小排列，
+
+fig = plt.figure(figsize = (10,4))
+ax1 = fig.add_subplot(1,2,1)
+ax1.scatter(data1, data2)
+plt.grid()
+# 正线性相关
+
+ax2 = fig.add_subplot(1,2,2)
+ax2.scatter(data1, data3)
+plt.grid()
+# 负线性相关
+```
+
+![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\16.png)
+
+#### 二、散点图矩阵初判多变量间关系
+
+```python
+data = pd.DataFrame(np.random.randn(200,4)*100, columns = ['A','B','C','D'])
+data.head()
+Out[35]: 
+            A           B           C           D
+0  -67.101633  -46.386179  -37.639753 -164.621415
+1   91.064805  182.513617  111.572007 -134.986629
+2  -56.012609   34.147253    8.393654    5.934948
+3  131.047054   23.544414   -6.393726  -34.823170
+4  184.410434 -100.863138  154.272951  -77.870318
+```
+
+作图矩阵
+
+```python
+pd.scatter_matrix(data,figsize=(8,8),
+                  c = 'k',
+                 marker = '+',
+                 diagonal='hist',
+                 alpha = 0.8,
+                 range_padding=0.1)
+```
+
+![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\17.png)
+
+#### 三、Pearson相关系数
+
+```python
+data1 = pd.Series(np.random.rand(100)*100).sort_values()
+data2 = pd.Series(np.random.rand(100)*50).sort_values()
+data = pd.DataFrame({'value1':data1.values,
+                     'value2':data2.values})
+                     
+
+data.head()
+Out[38]: 
+     value1    value2
+0  0.402010  0.154426
+1  1.414525  1.240293
+2  1.717974  1.574587
+3  1.860956  1.759390
+4  4.067166  2.165177
+
+data.corr()
+# pandas相关性方法：data.corr(method='pearson', min_periods=1) → 直接给出数据字段的相关系数矩阵
+# method默认pearson
+Out[39]: 
+         value1   value2
+value1  1.00000  0.98603
+value2  0.98603  1.00000
+```
 
