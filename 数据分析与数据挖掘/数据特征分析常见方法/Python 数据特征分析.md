@@ -201,7 +201,7 @@ data.plot(kind='line',
        title = 'AB产品销量对比-折线图')
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\5.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/5.png)
 
 **柱状图比较**
 
@@ -213,7 +213,7 @@ data.plot(kind = 'bar',
           title = 'AB产品销量对比-柱状图')
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\6.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/6.png)
 
 **柱状图比较**
 
@@ -245,7 +245,7 @@ ax2.set_xticklabels(data.index[::6])
 # 创建差值折线图
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\7.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/7.png)
 
 #### 2、相对数比较-相除
 
@@ -299,7 +299,7 @@ axes[1].legend(loc = 'upper right')
 # 绝对值对比较难看出结构性变化，通过看销售额占比来看售卖情况的对比
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\8.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/8.png)
 
 **纵向对比分析**
 
@@ -341,7 +341,7 @@ plt.grid()
 # 通过折线图查看增长量情况
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\9.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/9.png)
 
 ```python
 data['zspeed'] = data['z_growth'] / data.shift(1)['A']  # 环比增长速度
@@ -350,7 +350,7 @@ plt.axhline(0,hold=None,color='r',linestyle="--",alpha=0.8)  # 添加y轴参考�
 plt.grid()
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\10.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/10.png)
 
 ## 三、统计分析
 
@@ -421,7 +421,7 @@ plt.text(mean + 5,0.015,'中位数：%i' % med, color = 'g')
 # 中位数
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\11.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/11.png)
 
 #### 二、离中趋势度量
 
@@ -482,7 +482,7 @@ data.plot.box(vert=False,grid = True,color = color,figsize = (10,3))
 #箱型图
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\12.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/12.png)
 
 **方差、标准差**
 
@@ -521,7 +521,7 @@ plt.axvline(stb.loc['50%'] + b_std,hold=None,color='b',linestyle="--",alpha=0.8)
 # B密度曲线，1个标准差
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\13.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/13.png)
 
 ## 四、帕累托统计
 
@@ -601,7 +601,7 @@ plt.ylabel('营收_比例')
 # 绘制营收累计占比曲线
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\14.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/14.png)
 
 ## 五、正太性检验
 
@@ -637,7 +637,7 @@ plt.grid()
 # 呈现较明显的正太性
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\15.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/15.png)
 
 #### 二、KS检验
 
@@ -675,7 +675,7 @@ plt.grid()
 # 负线性相关
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\16.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/16.png)
 
 #### 二、散点图矩阵初判多变量间关系
 
@@ -702,7 +702,7 @@ pd.scatter_matrix(data,figsize=(8,8),
                  range_padding=0.1)
 ```
 
-![](E:\Python\数据分析与数据挖掘\数据特征分析常见方法\pictures\17.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/pictures/17.png)
 
 #### 三、Pearson相关系数
 
