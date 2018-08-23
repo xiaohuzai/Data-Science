@@ -1,5 +1,9 @@
 # Python 数据特征分析
 
+[TOC]
+
+
+
 ## 一、分布分析
 
 以[“深圳罗湖二手房信息.csv”](https://raw.githubusercontent.com/xiaohuzai/Python/master/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/%E6%95%B0%E6%8D%AE%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E5%B8%B8%E8%A7%81%E6%96%B9%E6%B3%95/%E6%B7%B1%E5%9C%B3%E7%BD%97%E6%B9%96%E4%BA%8C%E6%89%8B%E6%88%BF%E4%BF%A1%E6%81%AF.csv)数据为例。
