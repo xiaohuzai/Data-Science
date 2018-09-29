@@ -110,6 +110,9 @@ def bubbleSortWithTweak(lyst):
         n -=1
 
 def insertionSort(lyst):
+    '''
+    插入排序
+    '''
     i = 1
     while i < len(lyst):
         itemToInsert = lyst[i]
@@ -124,7 +127,7 @@ def insertionSort(lyst):
         i += 1
 
 '''
-快速排序
+快速排序，使用递归方法
 '''
 def partition(lyst,left,right):
     middle = (left+right)//2
@@ -144,6 +147,34 @@ def quicksort(lyst,left,right):
         pivoLocation = partition(lyst,left,right)
         quicksort(lyst,left,pivoLocation)
         quicksort(lyst,pivoLocation+1,right)
+
+'''
+合并排序
+'''
+def merge(lyst,copyBuffer,low,middle,high):
+    i1 = low
+    i2 = middle+1
+    for i in range(low,high+1):
+        if i1 > middle:
+            copyBuffer[i] = lyst[i2]
+            i2 += 1
+        elif i2 > high:
+            copyBuffer[i] = lyst[i1]
+        elif lyst[i1] < lyst[i2]:
+            copyBuffer[i] = lyst[i1]
+            i1 += 1
+        else:
+            copyBuffer[i] = lyst[i2]
+            i2 += 1
+    for i in range(low,high):
+        lyst[i] = copyBuffer[i]
+
+def mergeSort(lyst,copyBuffer,low,high):
+    if low < high:
+        middle = (low+high)//2
+        mergeSort(lyst,copyBuffer,low,middle)
+        mergeSort(lyst,copyBuffer,middle+1,high)
+        merge(lyst,copyBuffer,low,middle,high)
 
     
     
