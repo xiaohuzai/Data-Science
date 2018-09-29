@@ -2,7 +2,7 @@
 
 ### 一、HDFS架构
 
-![](E:\BigData\pictures\HDFS\1.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Data-Science/master/HADOOP/pictures/HDFS/1.png)
 
 HDFS是一个**Master/Slave**架构。
 
@@ -48,7 +48,7 @@ Datanode可以响应客户端的读写请求，也接受来自Namenode的数据�
 
 **HDFS读流程**：
 
-![](E:\BigData\pictures\HDFS\2.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Data-Science/master/HADOOP/pictures/HDFS/2.png)
 
 1. 客户端向NN发起读请求，会请求一个文件；
 2. NN返回请求文件的数据块所在的存储节点列表，如果该文件有多个数据块，则返回多个数据列表；
@@ -60,7 +60,7 @@ Datanode可以响应客户端的读写请求，也接受来自Namenode的数据�
 
 **HDFS写流程：**
 
-![](E:\BigData\pictures\HDFS\3.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Data-Science/master/HADOOP/pictures/HDFS/3.png)
 
 1. 客户端会发起请求 
 2. DF向NN生成一个文件路径。NN会返回这个文件第一个Blocks所在的DN列表信息
@@ -74,7 +74,7 @@ Datanode可以响应客户端的读写请求，也接受来自Namenode的数据�
 
 在与客户端相同的节点上放置第一个副本，第二个副本放置在与第一个副本不同的随机选择的机架上，第三个副本放置在第二个相同的机架上，但是不同节点。
 
-![](E:\BigData\pictures\HDFS\4.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Data-Science/master/HADOOP/pictures/HDFS/4.png)
 
 客户端是如何选择读取哪个副本的呢？
 
@@ -82,5 +82,5 @@ Datanode可以响应客户端的读写请求，也接受来自Namenode的数据�
 
 对存储位置的定义：
 
-![](E:\BigData\pictures\HDFS\5.png)
+![](https://raw.githubusercontent.com/xiaohuzai/Data-Science/master/HADOOP/pictures/HDFS/5.png)
 
